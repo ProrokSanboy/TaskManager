@@ -2,6 +2,7 @@ package com.example.appx;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -39,11 +40,13 @@ public class RegistrationActivity extends AppCompatActivity {
         String login = editTextLogin.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String password2 = editTextPassword2.getText().toString().trim();
-        if (password != password2) {
+        if (!password.equals(password2)) {
             Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
             person = new Person(name, surname, post, login, password);
+            Intent intent = new Intent(this, MainScreenActivity.class);
+            startActivity(intent);
         }
     }
 }

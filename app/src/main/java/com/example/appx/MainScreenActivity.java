@@ -19,10 +19,13 @@ import com.example.appx.utils.UrlBuilder;
 
 import java.util.ArrayList;
 
+import static com.example.appx.RegistrationActivity.person;
+
 public class MainScreenActivity extends AppCompatActivity {
 
     private TextView textViewPerson;
     private RecyclerView recyclerViewTasks;
+    private String personalData;
     public static final ArrayList<Task> tasks = new ArrayList<>();
 
     @Override
@@ -32,7 +35,8 @@ public class MainScreenActivity extends AppCompatActivity {
         textViewPerson = findViewById(R.id.textViewPerson);
         recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
 
-
+        personalData = String.format("%s %s\nДолжность: %s", person.getName(), person.getSurname(), person.getPost());
+        textViewPerson.setText(personalData);
         /*DownloadTasksJSON downloadTasksJSON = new DownloadTasksJSON();
         downloadTasksJSON.execute(UrlBuilder.generateURL("/tasks").toString());*/
 
