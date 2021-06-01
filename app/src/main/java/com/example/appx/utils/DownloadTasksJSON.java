@@ -51,9 +51,6 @@ public class DownloadTasksJSON extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        if (MainScreenActivity.tasks.size() > 0){
-            MainScreenActivity.tasks.clear();
-        }
         try {
             JSONArray jsonArray = new JSONArray(s);
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -61,8 +58,8 @@ public class DownloadTasksJSON extends AsyncTask<String, Void, String> {
                 String project_id = jsonArray.getJSONObject(i).getString("project_id");
                 String content = jsonArray.getJSONObject(i).getString("content");
                 String description = jsonArray.getJSONObject(i).getString("description");
-                Task task = new Task(project_id, content);
-                MainScreenActivity.tasks.add(task);
+                //Task task = new Task(project_id, content);
+                //MainScreenActivity.tasks.add(task);
             }
 
         } catch (JSONException e) {

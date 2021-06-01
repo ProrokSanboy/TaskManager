@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AppX</string>
+
+    <string-array name="persons">
+        <item>Иван Иванов</item>
+        <item>Дмитрий Петров</item>
+        <item>Ирина Макарова</item>
+        <item>Анатолий Скворцов</item>
+    </string-array>
 </resources>

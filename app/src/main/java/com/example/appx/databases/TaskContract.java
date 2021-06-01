@@ -1,4 +1,4 @@
-package com.example.appx;
+package com.example.appx.databases;
 
 import android.provider.BaseColumns;
 

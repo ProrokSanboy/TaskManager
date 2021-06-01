@@ -42,7 +42,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = tasks.get(position);
         holder.textViewContent.setText(task.getContent());
-        holder.textViewProject.setText(task.getProject_id());
+        holder.textViewStatus.setText(task.getStatus());
+        holder.textViewPerson.setText(task.getPerson());
     }
 
     @Override
@@ -53,11 +54,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     class TaskViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewContent;
-        private TextView textViewProject;
+        private TextView textViewStatus;
+        private TextView textViewPerson;
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewContent = itemView.findViewById(R.id.textViewContent);
-            textViewProject = itemView.findViewById(R.id.textViewProject);
+            textViewStatus = itemView.findViewById(R.id.textViewStatus);;
+            textViewPerson = itemView.findViewById(R.id.textViewPerson);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

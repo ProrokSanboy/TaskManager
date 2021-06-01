@@ -1,88 +1,65 @@
 package com.example.appx.entities;
 
 public class Task {
-    private String id;
-    private String project_id;
+    private int id;
     private String content;
-    private String priority;
-    private String order;
-    private boolean completed;
-    private String created;
+    private String due;
+    private String status;
+    private String person;
 
-    public Task(String id, String project_id, String content, String priority, String order, boolean completed, String created) {
+    public Task(String content, String status, String person) {
+        this.content = content;
+        this.status = status;
+        this.person = person;
+    }
+
+    public Task(int id, String content, String status, String person) {
         this.id = id;
-        this.project_id = project_id;
         this.content = content;
-        this.priority = priority;
-        this.order = order;
-        this.completed = completed;
-        this.created = created;
+        this.status = status;
+        this.person = person;
     }
 
-    public Task(String id, String project_id, String content) {
-        this.id = id;
-        this.project_id = project_id;
+    public Task(String content, String due, String status, String person) {
         this.content = content;
+        this.due = due;
+        this.status = status;
+        this.person = person;
     }
 
-    public Task(String project_id, String content) {
-        this.project_id = project_id;
-        this.content = content;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
-    }
-
-    public String getProject_id() {
-        return project_id;
     }
 
     public String getContent() {
         return content;
     }
 
-    public String getPriority() {
-        return priority;
+    public String getDue() {
+        return due;
     }
 
-    public String getOrder() {
-        return order;
+    public String getStatus() {
+        return status;
     }
 
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setProject_id(String project_id) {
-        this.project_id = project_id;
+    public String getPerson() {
+        return person;
     }
 
     public void setContent(String content) {
         this.content = content;
     }
 
-    public void setPriority(String priority) {
-        this.priority = priority;
+    public void setDue(String due) {
+        this.due = due;
     }
 
-    public void setOrder(String order) {
-        this.order = order;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
+    public void setPerson(String person) {
+        this.person = person;
     }
 }

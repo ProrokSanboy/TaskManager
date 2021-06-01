@@ -1,4 +1,4 @@
-package com.example.appx;
+package com.example.appx.databases;
 
 
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.appx.databases.TaskContract;
 
 public class TasksDBHelper extends SQLiteOpenHelper {
 

@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.appx.databases.TaskContract;
+import com.example.appx.databases.TasksDBHelper;
 import com.example.appx.entities.Task;
 import com.example.appx.entities.TaskAdapter;
-import com.example.appx.utils.DownloadTasksJSON;
-import com.example.appx.utils.UrlBuilder;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,11 @@ public class MainScreenActivity extends AppCompatActivity {
 
     private TextView textViewPerson;
     private RecyclerView recyclerViewTasks;
+    private TaskAdapter adapter;
     private String personalData;
-    public static final ArrayList<Task> tasks = new ArrayList<>();
+    private TasksDBHelper dbHelper;
+    private SQLiteDatabase database;
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +38,31 @@ public class MainScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen);
         textViewPerson = findViewById(R.id.textViewPerson);
         recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
+        dbHelper = new TasksDBHelper(this);
+        database = dbHelper.getWritableDatabase();
+        getData();
 
-        personalData = String.format("%s %s\nДолжность: %s", person.getName(), person.getSurname(), person.getPost());
-        textViewPerson.setText(personalData);
-        /*DownloadTasksJSON downloadTasksJSON = new DownloadTasksJSON();
-        downloadTasksJSON.execute(UrlBuilder.generateURL("/tasks").toString());*/
+        if (person != null) {
+            personalData = String.format("%s %s\nДолжность: %s", person.getName(), person.getSurname(), person.getPost());
+            textViewPerson.setText(personalData);
+        }
 
-        TaskAdapter adapter = new TaskAdapter(tasks);
+
+/*        //вставка в базу данных
+        for (Task task : tasks) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(TaskContract.TasksEntry.ITEM_COLUMN_CONTENT, task.getContent());
+            contentValues.put(TaskContract.TasksEntry.ITEM_COLUMN_STATUS, task.getStatus());
+            contentValues.put(TaskContract.TasksEntry.ITEM_COLUMN_PERSON, task.getPerson());
+            database.insert(TaskContract.TasksEntry.TABLE_NAME, null, contentValues);
+        }*/
+
+
+        adapter = new TaskAdapter(tasks);
         recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewTasks.setAdapter(adapter);
+
+        //слушатели нажатий и свайпов
         adapter.setOnTaskClickListener(new TaskAdapter.OnTaskClickListener() {
             @Override
             public void onTaskClick(int position) {
@@ -60,15 +80,38 @@ public class MainScreenActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                tasks.remove(viewHolder.getAdapterPosition());
-                adapter.notifyDataSetChanged();
+                remove(viewHolder.getAdapterPosition());
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerViewTasks);
     }
 
+    //удаление задачи из базы
+    private void remove(int position) {
+        int id = tasks.get(position).getId();
+        String where = TaskContract.TasksEntry._ID + " = ?";
+        String[] whereArgs = new String[]{Integer.toString(id)};
+        database.delete(TaskContract.TasksEntry.TABLE_NAME, where, whereArgs);
+        getData();
+        adapter.notifyDataSetChanged();
+    }
+
     public void onClickToAddActivity(View view) {
         Intent intent = new Intent(this, AddTaskActivity.class);
         startActivity(intent);
+    }
+
+    private void getData() {
+        tasks.clear();
+        Cursor cursor = database.query(TaskContract.TasksEntry.TABLE_NAME, null, null, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndex(TaskContract.TasksEntry._ID));
+            String content = cursor.getString(cursor.getColumnIndex(TaskContract.TasksEntry.ITEM_COLUMN_CONTENT));
+            String status = cursor.getString(cursor.getColumnIndex(TaskContract.TasksEntry.ITEM_COLUMN_STATUS));
+            String person = cursor.getString(cursor.getColumnIndex(TaskContract.TasksEntry.ITEM_COLUMN_PERSON));
+            Task task = new Task(id, content, status, person);
+            tasks.add(task);
+        }
+        cursor.close();
     }
 }
