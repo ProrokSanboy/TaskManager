@@ -1,4 +1,4 @@
-package com.example.appx;
+package com.example.appx.screens;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.appx.R;
 import com.example.appx.databases.TaskContract;
 import com.example.appx.databases.TasksDBHelper;
 import com.example.appx.entities.Task;
@@ -20,7 +21,7 @@ import com.example.appx.entities.TaskAdapter;
 
 import java.util.ArrayList;
 
-import static com.example.appx.RegistrationActivity.person;
+import static com.example.appx.screens.RegistrationActivity.person;
 
 public class MainScreenActivity extends AppCompatActivity {
 

@@ -1,10 +1,6 @@
-package com.example.appx.utils;
+package com.example.appx.api;
 
 import android.os.AsyncTask;
-import android.util.Log;
-
-import com.example.appx.MainScreenActivity;
-import com.example.appx.entities.Task;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +12,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class DownloadTasksJSON extends AsyncTask<String, Void, String> {
     @Override

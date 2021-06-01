@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppX">
-        <activity android:name=".EditTaskActivity"></activity>
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".AddTaskActivity" />
-        <activity android:name=".MainScreenActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".screens.EditTaskActivity"></activity>
+        <activity android:name=".screens.RegistrationActivity" />
+        <activity android:name=".screens.AddTaskActivity" />
+        <activity android:name=".screens.MainScreenActivity" />
+        <activity android:name=".screens.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

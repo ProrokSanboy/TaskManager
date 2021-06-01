@@ -1,4 +1,4 @@
-package com.example.appx.utils;
+package com.example.appx.api;
 
 import android.net.Uri;
 

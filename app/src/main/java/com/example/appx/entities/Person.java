@@ -18,6 +18,12 @@ public class Person {
         this.password = password;
     }
 
+    public Person(String name, String surname, String post) {
+        this.name = name;
+        this.surname = surname;
+        this.post = post;
+    }
+
     public String getName() {
         return name;
     }

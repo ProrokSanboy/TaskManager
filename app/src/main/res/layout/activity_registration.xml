@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#575555"
     android:padding="16dp"
-    tools:context=".RegistrationActivity">
+    tools:context=".screens.RegistrationActivity">
 
     <EditText
         android:id="@+id/editTextName"
