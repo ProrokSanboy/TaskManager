@@ -40,13 +40,19 @@ public class RegistrationActivity extends AppCompatActivity {
         String login = editTextLogin.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String password2 = editTextPassword2.getText().toString().trim();
-        if (!password.equals(password2)) {
-            Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show();
+
+
+        if (!name.isEmpty() && !surname.isEmpty() && !post.isEmpty() && !login.isEmpty() && !password.isEmpty() && !password2.isEmpty()) {
+            if (!password.equals(password2)) {
+                Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                person = new Person(name, surname, post, login, password);
+                Intent intent = new Intent(this, MainScreenActivity.class);
+                startActivity(intent);
+            }
         } else {
-            Toast.makeText(this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
-            person = new Person(name, surname, post, login, password);
-            Intent intent = new Intent(this, MainScreenActivity.class);
-            startActivity(intent);
+            Toast.makeText(this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show();
         }
     }
 }
