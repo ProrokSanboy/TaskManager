@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="2dp">
 
         <TextView
             android:id="@+id/textViewContent"
@@ -18,6 +19,7 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             android:text="Задача"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/textViewPerson"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,10 +37,14 @@
             android:id="@+id/textViewPerson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Имя Фамилия"
             android:padding="4dp"
+            android:text="Имя Фамилия"
+            android:textColor="#AFAFAF"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewContent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/textViewContent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

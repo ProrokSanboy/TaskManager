@@ -48,16 +48,6 @@ public class MainScreenActivity extends AppCompatActivity {
         }
 
 
-/*        //вставка в базу данных
-        for (Task task : tasks) {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(TaskContract.TasksEntry.ITEM_COLUMN_CONTENT, task.getContent());
-            contentValues.put(TaskContract.TasksEntry.ITEM_COLUMN_STATUS, task.getStatus());
-            contentValues.put(TaskContract.TasksEntry.ITEM_COLUMN_PERSON, task.getPerson());
-            database.insert(TaskContract.TasksEntry.TABLE_NAME, null, contentValues);
-        }*/
-
-
         adapter = new TaskAdapter(tasks);
         recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewTasks.setAdapter(adapter);
@@ -70,6 +60,12 @@ public class MainScreenActivity extends AppCompatActivity {
 
             @Override
             public void onLongClick(int position) {
+                Intent intent = new Intent(getApplicationContext(), EditTaskActivity.class);
+                intent.putExtra("id", tasks.get(position).getId());
+                intent.putExtra("content", tasks.get(position).getContent());
+                intent.putExtra("status", tasks.get(position).getStatus());
+                intent.putExtra("person", tasks.get(position).getPerson());
+                startActivity(intent);
             }
         });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {

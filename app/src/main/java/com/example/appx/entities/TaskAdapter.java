@@ -1,5 +1,6 @@
 package com.example.appx.entities;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public interface OnTaskClickListener {
         void onTaskClick(int position);
+
         void onLongClick(int position);
     }
 
@@ -44,6 +46,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.textViewContent.setText(task.getContent());
         holder.textViewStatus.setText(task.getStatus());
         holder.textViewPerson.setText(task.getPerson());
+        if (task.getStatus().equals("Готово")) {
+            holder.textViewStatus.setTextColor(Color.parseColor("#7CB342"));
+        } else if (task.getStatus().equals("Ожидает")) {
+            holder.textViewStatus.setTextColor(Color.parseColor("#1E88E5"));
+        } else if (task.getStatus().equals("В работе")) {
+            holder.textViewStatus.setTextColor(Color.parseColor("#FB8C00"));
+        }
     }
 
     @Override
@@ -56,10 +65,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         private TextView textViewContent;
         private TextView textViewStatus;
         private TextView textViewPerson;
+
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewContent = itemView.findViewById(R.id.textViewContent);
-            textViewStatus = itemView.findViewById(R.id.textViewStatus);;
+            textViewStatus = itemView.findViewById(R.id.textViewStatus);
+            ;
             textViewPerson = itemView.findViewById(R.id.textViewPerson);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
