@@ -25,22 +25,32 @@ import static com.example.appx.screens.RegistrationActivity.person;
 
 public class MainScreenActivity extends AppCompatActivity {
 
+    //элементы из макета
     private TextView textViewPerson;
     private RecyclerView recyclerViewTasks;
     private TaskAdapter adapter;
     private String personalData;
+
+    //база данных
     private TasksDBHelper dbHelper;
     private SQLiteDatabase database;
+
+    //массив задач
     private final ArrayList<Task> tasks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        //соединение с макетом
         textViewPerson = findViewById(R.id.textViewPerson);
         recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
+
         dbHelper = new TasksDBHelper(this);
         database = dbHelper.getWritableDatabase();
+
+        //получение данных из базы данных (метод написан внизу)
         getData();
 
         if (person != null) {
@@ -48,7 +58,7 @@ public class MainScreenActivity extends AppCompatActivity {
             textViewPerson.setText(personalData);
         }
 
-
+        //установка адаптера для наполнения RecyclerView задачами
         adapter = new TaskAdapter(tasks);
         recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewTasks.setAdapter(adapter);
@@ -93,11 +103,13 @@ public class MainScreenActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    //нажатие на кнопку +
     public void onClickToAddActivity(View view) {
         Intent intent = new Intent(this, AddTaskActivity.class);
         startActivity(intent);
     }
 
+    //метод чтения данных из базы
     private void getData() {
         tasks.clear();
         Cursor cursor = database.query(TaskContract.TasksEntry.TABLE_NAME, null, null, null, null, null, null, null);

@@ -13,7 +13,7 @@ import com.example.appx.R;
 
 import java.util.ArrayList;
 
-
+//адаптер для соединения всех задач в элементе интерфейса RecyclerView
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     private ArrayList<Task> tasks;

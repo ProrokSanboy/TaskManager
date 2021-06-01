@@ -2,6 +2,7 @@ package com.example.appx.databases;
 
 import android.provider.BaseColumns;
 
+//класс для хранения текстовых констант для базы данных
 public class TaskContract {
     public static final class TasksEntry implements BaseColumns {
         public static String TABLE_NAME = "tasks";

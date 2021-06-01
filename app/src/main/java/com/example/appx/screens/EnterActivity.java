@@ -17,7 +17,7 @@ import com.example.appx.entities.Person;
 
 import static com.example.appx.screens.RegistrationActivity.person;
 
-public class MainActivity extends AppCompatActivity {
+public class EnterActivity extends AppCompatActivity {
     private EditText editTextLogin;
     private EditText editTextPassword;
 

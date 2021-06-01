@@ -57,7 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
             if (!password.equals(password2)) {
                 Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show();
             } else {
-                person = new Person(name, surname, post, login, password);
+                person = new Person(name, surname, post);
                 ContentValues cv = new ContentValues();
                 cv.put(PersonContract.PersonEntry.COLUMN_NAME, name);
                 cv.put(PersonContract.PersonEntry.COLUMN_SURNAME, surname);

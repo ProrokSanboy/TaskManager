@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+//класс для взаимодействия с базой данных
 public class PersonDBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "persons.db";

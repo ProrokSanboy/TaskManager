@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.example.appx.databases.TaskContract;
 
+//класс для взаимодействия с базой данных
 public class TasksDBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "tasks.db";

@@ -15,7 +15,7 @@
         <activity android:name=".screens.RegistrationActivity" />
         <activity android:name=".screens.AddTaskActivity" />
         <activity android:name=".screens.MainScreenActivity" />
-        <activity android:name=".screens.MainActivity">
+        <activity android:name=".screens.EnterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

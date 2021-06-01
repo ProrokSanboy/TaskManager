@@ -8,15 +8,7 @@ public class Person {
     private String post;
     private String login;
     private String password;
-    private ArrayList<Task> personalTasks;
 
-    public Person(String name, String surname, String post, String login, String password) {
-        this.name = name;
-        this.surname = surname;
-        this.post = post;
-        this.login = login;
-        this.password = password;
-    }
 
     public Person(String name, String surname, String post) {
         this.name = name;
@@ -44,9 +36,6 @@ public class Person {
         return password;
     }
 
-    public ArrayList<Task> getPersonalTasks() {
-        return personalTasks;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -68,7 +57,4 @@ public class Person {
         this.password = password;
     }
 
-    public void setPersonalTasks(ArrayList<Task> personalTasks) {
-        this.personalTasks = personalTasks;
-    }
 }
